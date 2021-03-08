@@ -7,7 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp3.1\FileXplorer.deps.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\FileXplorer.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\FileXplorer.runtimeconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp3.1\FileXplorer.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\FileXplorer.exe" />
+    <None Include="bin\Debug\netcoreapp3.1\FileXplorer.pdb" />
+    <None Include="bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\netcoreapp3.1\System.Drawing.Common.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Release\netcoreapp3.1\" />
   </ItemGroup>
 
 </Project>
