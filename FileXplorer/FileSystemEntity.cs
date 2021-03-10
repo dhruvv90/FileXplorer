@@ -9,10 +9,17 @@ namespace FileXplorer
 {
     public class FileSystemEntity : IBaseClass
     {
+        public FileSystemEntity() { }
+
         public FileSystemInfo FileSystemInfo
         {
             get { return base.GetValue<FileSystemInfo>("FileSystemInfo"); }
             private set { base.SetValue("FileSystemInfo", value); }
+        }
+
+        public string SelectedItemDescription
+        {
+            get; set;
         }
 
         public bool IsExpanded
@@ -42,10 +49,12 @@ namespace FileXplorer
 
             this.Children = new ObservableCollection<FileSystemEntity>();
             this.FileSystemInfo = info;
+
             if (info is DirectoryInfo)
             {
                 this.ImageSource = FolderManager.GetImageSource(info.FullName, ItemState.Close);
                 this.AddDummy();
+                this.PopulateDetails();
             }
             else if (info is FileInfo)
             {
@@ -53,6 +62,14 @@ namespace FileXplorer
             }
 
             this.PropertyChanged += FileSystemEntity_PropertyChanged;
+        }
+
+        private void PopulateDetails()
+        {
+            FileSystemInfo[] contents = (this.FileSystemInfo as DirectoryInfo).GetFileSystemInfos("*", new EnumerationOptions());
+            string postfix = (contents.Length > 1) ? " Items" : " Item";
+            string prefix = contents.Length.ToString();
+            this.SelectedItemDescription = prefix + postfix;
         }
 
         private bool HasDummy()
@@ -115,8 +132,8 @@ namespace FileXplorer
                 {
                     bool isHidden = (dir.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
                     bool isSystem = (dir.Attributes & FileAttributes.System) == FileAttributes.System;
-                    
-                    if(!isHidden && !isSystem)
+
+                    if (!isHidden && !isSystem)
                     {
                         this.Children.Add(new FileSystemEntity(dir));
                     }
@@ -154,5 +171,10 @@ namespace FileXplorer
         public DummyFileSystemEntity() : base(new DirectoryInfo("Empty"))
         { }
 
+    }
+
+    public class Test
+    {
+        public string test = "abcd";
     }
 }

@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:FileXplorer"
         mc:Ignorable="d"
         Title="MainWindow" Width="500" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:FileSystemEntity></local:FileSystemEntity>
+    </Window.DataContext>
     <DockPanel Margin="5,5,5,5">
-        <TreeView x:Name="treeView" MinHeight="520" DockPanel.Dock="Top">
+        <TreeView x:Name="treeView" Height="520" DockPanel.Dock="Top">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
@@ -20,13 +23,15 @@
                         <Image Source="{Binding Path=ImageSource, UpdateSourceTrigger=PropertyChanged}" Margin="0,1,8,1"></Image>
                         <TextBlock Text="{Binding Path=FileSystemInfo.Name}">
                         </TextBlock>
+
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
+
         </TreeView>
-        <StatusBar DockPanel.Dock="Bottom" MinHeight="20" Name="statusBar"  Background="White">
+        <StatusBar  DockPanel.Dock="Bottom" MinHeight="20" Name="statusBar">
             <StatusBarItem Margin="5,1,1,1" Width="200"  HorizontalAlignment="Left">
-                
+                <TextBlock Text="{Binding ElementName=treeView, Path=SelectedItem.SelectedItemDescription}"></TextBlock>
             </StatusBarItem>
         </StatusBar>
     </DockPanel>
