@@ -53,7 +53,6 @@ namespace FileXplorer
             if (info is DirectoryInfo)
             {
                 this.ImageSource = FolderManager.GetImageSource(info.FullName, ItemState.Close);
-                this.AddDummy();
                 this.PopulateDetails();
             }
             else if (info is FileInfo)
@@ -67,9 +66,14 @@ namespace FileXplorer
         private void PopulateDetails()
         {
             FileSystemInfo[] contents = (this.FileSystemInfo as DirectoryInfo).GetFileSystemInfos("*", new EnumerationOptions());
-            string postfix = (contents.Length > 1) ? " Items" : " Item";
+            string postfix = (contents.Length == 1) ? " Item" : " Items";
             string prefix = contents.Length.ToString();
             this.SelectedItemDescription = prefix + postfix;
+
+            if(contents.Length > 0)
+            {
+                this.AddDummy();
+            }
         }
 
         private bool HasDummy()
