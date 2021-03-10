@@ -24,7 +24,6 @@ namespace FileXplorer
                     this.treeView.Items.Add(new FileSystemEntity(drive));
                 }
             }
-
         }
     }
 }
