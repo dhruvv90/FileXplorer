@@ -10,6 +10,7 @@
         <local:FileSystemEntity></local:FileSystemEntity>
     </Window.DataContext>
     <DockPanel Margin="5,5,5,5">
+        <Label DockPanel.Dock="Top" Height="30" Content="{Binding ElementName=treeView, Path=SelectedItem.FileSystemInfo.FullName}" />
         <TreeView x:Name="treeView" Height="520" DockPanel.Dock="Top">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
