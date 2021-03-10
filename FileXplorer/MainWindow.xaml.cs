@@ -11,15 +11,20 @@ namespace FileXplorer
         public MainWindow()
         {
             InitializeComponent();
+            InitializeFileExplorer();
+        }
 
+        private void InitializeFileExplorer()
+        {
             DriveInfo[] drives = DriveInfo.GetDrives();
-            foreach(DriveInfo drive in drives)
+            foreach (DriveInfo drive in drives)
             {
                 if (drive.IsReady)
                 {
                     this.treeView.Items.Add(new FileSystemEntity(drive));
                 }
             }
+
         }
     }
 }
