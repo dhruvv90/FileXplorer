@@ -22,6 +22,11 @@ namespace FileXplorer
             get; set;
         }
 
+        public bool IsSelected
+        {
+            get; set;
+        }
+
         public bool IsExpanded
         {
             get { return base.GetValue<bool>("IsExpanded"); }
@@ -46,7 +51,6 @@ namespace FileXplorer
             {
                 return;
             }
-
             this.Children = new ObservableCollection<FileSystemEntity>();
             this.FileSystemInfo = info;
 

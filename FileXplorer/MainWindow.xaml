@@ -16,6 +16,7 @@
                 <Style TargetType="{x:Type TreeViewItem}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                     <Setter Property="KeyboardNavigation.AcceptsReturn" Value="True"/>
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
                 </Style>
             </TreeView.ItemContainerStyle>
             <TreeView.Resources>
@@ -28,7 +29,6 @@
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
-
         </TreeView>
         <StatusBar  DockPanel.Dock="Bottom" MinHeight="20" Name="statusBar" Background="White">
             <StatusBarItem Margin="5,1,1,1" Width="200"  HorizontalAlignment="Left">

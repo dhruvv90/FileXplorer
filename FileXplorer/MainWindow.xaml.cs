@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
+
 
 namespace FileXplorer
 {
@@ -24,6 +26,13 @@ namespace FileXplorer
                     this.treeView.Items.Add(new FileSystemEntity(drive));
                 }
             }
+            SelectDefaultDirectory();
+        }
+
+        private void SelectDefaultDirectory()
+        {
+            string defaultPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            new TreeViewHelper(this.treeView).NavigateToDirectory(defaultPath);
         }
     }
 }
