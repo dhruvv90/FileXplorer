@@ -18,11 +18,6 @@ namespace FileXplorer
 
         public void NavigateToDirectory(string dirPath)
         {
-            if (!Directory.Exists(dirPath))
-            {
-                return;
-            }
-
             string rootString = Directory.GetDirectoryRoot(dirPath);
             FileSystemEntity rootEntity = new DummyFileSystemEntity();
 
@@ -41,19 +36,21 @@ namespace FileXplorer
             }
 
 
-            Stack<FileSystemEntity> entities = new Stack<FileSystemEntity>();
-            entities.Push(rootEntity);
+            FileSystemEntity parentEntity = rootEntity;
+            bool found = true;
 
-            while (entities.Any())
+            while (found)
             {
-                FileSystemEntity parentEntity = entities.Pop();
                 foreach (var child in parentEntity.Children)
                 {
+                    found = false;
                     if (dirPath.StartsWith(child.FileSystemInfo.FullName))
                     {
                         child.IsExpanded = true;
                         child.IsSelected = true;
-                        entities.Push(child);
+                        parentEntity = child;
+                        found = true;
+                        break;
                     }
                 }
             }
